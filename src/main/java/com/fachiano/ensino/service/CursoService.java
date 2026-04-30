@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.fachiano.ensino.model.Aluno;
 import com.fachiano.ensino.model.Curso;
 import com.fachiano.ensino.model.Professor;
 import com.fachiano.ensino.repository.CursoRepository;
@@ -22,6 +23,13 @@ public class CursoService {
 	
 	public List<Curso> listarTodos() {
 		return cursoRepository.findAll();
+	}
+	
+	public List<Aluno> listarAlunos(Long cursoId) {
+		Curso curso = cursoRepository.findById(cursoId)
+				.orElseThrow(() -> new RuntimeException("Curso não encontrado."));
+		
+		return curso.getAlunos();
 	}
 	
 	public Curso salvar(Curso curso, Long professorId) {

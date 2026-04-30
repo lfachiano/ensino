@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fachiano.ensino.model.Aluno;
 import com.fachiano.ensino.model.Curso;
 import com.fachiano.ensino.service.CursoService;
 
@@ -25,6 +26,11 @@ public class CursoController {
 	@GetMapping
 	public List<Curso> listar() {
 		return cursoService.listarTodos();
+	}
+	
+	@GetMapping("/{id}/alunos")
+	public List<Aluno> listarAlunos(@PathVariable Long id) {
+		return cursoService.listarAlunos(id);
 	}
 	
 	@PostMapping("/{professorId}")

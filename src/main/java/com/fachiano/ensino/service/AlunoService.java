@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.fachiano.ensino.model.Aluno;
+import com.fachiano.ensino.model.Curso;
 import com.fachiano.ensino.repository.AlunoRepository;
 
 @Service
@@ -23,6 +24,13 @@ private final AlunoRepository repository;
 	public Aluno buscarPorId(Long id) {
 		return repository.findById(id)
 				.orElseThrow(()-> new RuntimeException("Aluno não encontrado"));
+	}
+	
+	public List<Curso> listarCursos(Long alunoId) {
+		Aluno aluno = repository.findById(alunoId)
+				.orElseThrow(() -> new RuntimeException("Aluno não encontrado."));
+		
+		return aluno.getCursos();
 	}
 	
 	public Aluno salvar(Aluno aluno) {

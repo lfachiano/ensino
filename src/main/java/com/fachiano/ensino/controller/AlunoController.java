@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fachiano.ensino.model.Aluno;
+import com.fachiano.ensino.model.Curso;
 import com.fachiano.ensino.service.AlunoService;
 
 @RestController
@@ -32,6 +33,11 @@ public class AlunoController {
 	@GetMapping("/{id}")
 	public Aluno buscarPorId(@PathVariable Long id) {
 		return service.buscarPorId(id);
+	}
+	
+	@GetMapping("/{id}/cursos")
+	public List<Curso> listarCursos(@PathVariable Long id) {
+		return service.listarCursos(id);
 	}
 	
 	@PostMapping
